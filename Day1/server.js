@@ -1,5 +1,6 @@
 import express from "express";
 import "dotenv/config";
+import mainRouter from "./routes/index.js";
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.get("/name", (req, res) => {
   res.send("Pooja");
 });
 
+app.use('/api/v1',mainRouter);
 app.listen(8000, () => {
   console.log(`app is listening on port ${8000}`);
 });
