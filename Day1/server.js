@@ -10,7 +10,7 @@ let users = [];
 app.get("/", (req, res) => {
   // console.log(req);
   res.send(`Hello ${process.env.NAME}! Welcome to the express server`);
-  // console.log(res)
+  console.log(res)
   // console.log(`Hello,${process.env.NAME}`);
 });
 
