@@ -1,11 +1,11 @@
 import express from "express";
 import "dotenv/config";
 import mainRouter from "./routes/index.js";
-import mongoose from "mongoose";
+import connectDB from "./config/mongodb.js";
 const app = express();
 
 app.use(express.json());
-
+connectDB();
 let users = [];
 app.get("/", (req, res) => {
   // console.log(req);
