@@ -10,16 +10,24 @@ export const register=async(req,res)=>{
         }
         const newUser= User({name:name,email:email,password:password});
         await newUser.save();
-        res.json({name,email});
+        res.json({message:"user register successfully"});
     } catch (error) {
         res.json({message:error.message})
         console.log(error)
     }
 }
 
-export const login=(req,res)=>{
+export const login=async(req,res)=>{
     try {
-        res.json("Login Page");
+        const {email,password}=req.body;
+        const user=await User.findOne({email:email});
+        if(!user){
+            res.status(400).json({message:"User does not exist"});
+        }
+        const loginUser=User.findOne({email:email,password:password});
+        if(loginUser){
+            res.status(200).json({message:"User login successfully"});
+        }
     } catch (error) {
         console.log(error)
     }
