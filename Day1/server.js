@@ -2,9 +2,11 @@ import express from "express";
 import "dotenv/config";
 import mainRouter from "./routes/index.js";
 import connectDB from "./config/mongodb.js";
+import cors from 'cors'
 const app = express();
 
 app.use(express.json());
+app.use(cors())
 connectDB();
 let users = [];
 app.get("/", (req, res) => {

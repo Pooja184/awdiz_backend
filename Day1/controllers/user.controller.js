@@ -10,7 +10,7 @@ export const register=async(req,res)=>{
         }
         const newUser= User({name:name,email:email,password:password});
         await newUser.save();
-        res.json({message:"user register successfully"});
+        res.json({message:"user register successfully",newUser});
     } catch (error) {
         res.json({message:error.message})
         console.log(error)
@@ -20,14 +20,18 @@ export const register=async(req,res)=>{
 export const login=async(req,res)=>{
     try {
         const {email,password}=req.body;
-        const user=await User.findOne({email:email});
+        const user=await User.findOne({email,password});
         if(!user){
             res.status(400).json({message:"User does not exist"});
         }
-        const loginUser=User.findOne({email:email,password:password});
-        if(loginUser){
-            res.status(200).json({message:"User login successfully"});
-        }
+        // const loginUser=User.findOne({email:email,password:password});
+        // if(loginUser){
+        //     res.status(200).json({message:"User login successfully",loginUser});
+        // }
+         res.status(200).json({ 
+            message: "User login successfully", 
+            user // Convert to plain object
+        });
     } catch (error) {
         console.log(error)
     }
