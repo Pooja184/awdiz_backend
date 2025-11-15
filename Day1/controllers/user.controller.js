@@ -6,7 +6,7 @@ export const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
     const isUserExistForOne = await User.findOne({ email: email });
-    console.log(isUserExistForOne, "isUserExistForOne");
+    // console.log(isUserExistForOne, "isUserExistForOne");
     if (isUserExistForOne) {
       return res
         .status(400)
@@ -38,7 +38,7 @@ export const login = async (req, res) => {
         .json({ message: "Email and Password are required", success: false });
     }
     const isUserExists = await User.findOne({ email: email });
-    console.log(isUserExists, "isUserExists");
+    // console.log(isUserExists, "isUserExists");
     if (!isUserExists) {
       return res
         .status(404)

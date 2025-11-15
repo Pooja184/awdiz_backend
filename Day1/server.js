@@ -45,7 +45,7 @@ app.get("/name", (req, res) => {
   res.send("Pooja");
 });
 
-app.use('/api/v1',tokenDecoder,mainRouter);
+app.use('/api/v1',mainRouter);
 app.listen(8000, () => {
   console.log(`app is listening on port ${8000}`);
 });
